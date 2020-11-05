@@ -1,9 +1,6 @@
-# GitHub Secret Manager
+# Create a secret in all the filtered list of GitHub repositories.
 #
 # Yeah, it's pretty raw. But I needed to do it quick.
-#
-# Set GITHUB_USERNAME to your username.
-# Set GITHUB_PASSWORD to your password.
 
 from github import Github
 import os
@@ -23,4 +20,5 @@ g = Github(config["personal_access_token"])
 for repo in g.get_user().get_repos():
     # Get filtered list of repositories that are not archived.
     if (not repo.archived and config["repo_name_filter"] in repo.full_name):
-        print(repo.full_name)
+        repo.create_secret(config["secret_name"], config["secret_value"])
+        print("Created or updated secret in " + repo.full_name)

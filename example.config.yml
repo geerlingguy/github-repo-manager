@@ -1,0 +1,5 @@
+---
+personal_access_token: ''
+repo_name_filter: 'geerlingguy/ansible-role'
+secret_name: 'GALAXY_API_KEY'
+secret_value: ''
